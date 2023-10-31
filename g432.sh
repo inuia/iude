@@ -31,7 +31,7 @@ for region in "${regions[@]}"
 do
 echo "Creating resource in ${region}..."
 
-openai_name="iceb-${region}-${subnum}"
+openai_name="isde-${region}-${subnum}"
 
 az cognitiveservices account create \
 --name "${openai_name}" \
