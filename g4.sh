@@ -51,7 +51,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-4 \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "20" \
+--sku-capacity "40" \
 --sku-name "Standard"
 
 done
