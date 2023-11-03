@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# 输入的1个参数空则退出
 if [ -z "$1" ]
    then
      echo "No argument supplied"
