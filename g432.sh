@@ -16,7 +16,7 @@ az account set --subscription ${subscriptionId}
 # change the following regions to alias as above
 # export regions=(australiaeast canadaeast eastus eastus2 francecentral japaneast northcentralus swedencentral switzerlandnorth uksouth)
 # export regions=(australiaeast)
-export regions=(australiaeast canadaeast swedencentral)
+export regions=(CanadaEast SwedenCentral SwitzerlandNorth FranceCentral)
 
 export resourceGroup="openai" # Your resource group name
 export deploymentName="gpt-35-turbo"
