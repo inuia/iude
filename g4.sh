@@ -14,7 +14,7 @@ echo "Subscription ID: ${subscriptionId}"
 az account set --subscription ${subscriptionId}
 
 # change the following regions to alias as above
-export regions=(australiaeast canadaeast  swedencentral)
+export regions=(CanadaEast SwedenCentral SwitzerlandNorth FranceCentral)
 # export regions=(australiaeast)
 # export regions=(CanadaEast SwedenCentral AustraliaEast)
 
