@@ -15,7 +15,7 @@ export accountNames=$(az cognitiveservices account list -g ${resourceGroup} -o j
 
 for accountName in $accountNames
 do
-  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
