@@ -173,26 +173,6 @@ do
   }
   } '
 done
-for accountName in $accountNames
-do
-  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $accessToken" \
-  -d '{
-    "sku": {
-      "name": "Standard",
-      "capacity": 240
-    },
-    "properties": {
-      "model": {
-      "format": "OpenAI",
-      "name": "gpt-35-turbo",
-      "version": "0301"
-      },
-      "raiPolicyName":"Microsoft.Nil"
-  }
-  } '
-done
 export deploymentName="gpt-35-turbo-16k"
 for accountName in $accountNames
 do
@@ -296,3 +276,26 @@ do
   }
   } '
 done
+subscriptionId="d00cb678-1e2e-45ac-8d56-981fa30af0b5"
+export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
+export resourceGroup="openai"
+subnum="11214"
+deploymentName="gpt-35-turbo"
+openai_name="isde-westeurope-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${openai_name}/deployments/${deploymentName}?api-version=2023-05-01" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 240
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-35-turbo",
+      "version": "0301"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
