@@ -57,7 +57,7 @@ do
       --sku-capacity "240" \
       --sku-name "Standard"
 # 35 - 16k
-Deploy GPT-35-Turbo-16k model to each resource
+# Deploy GPT-35-Turbo-16k model to each resource
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
@@ -158,3 +158,152 @@ az cognitiveservices account deployment create \
 --model-format OpenAI \
 --sku-capacity "20" \
 --sku-name "Standard"
+
+#close content filter
+export deploymentName="gpt-35-turbo"
+export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
+export accountNames=$(az cognitiveservices account list -g ${resourceGroup} -o json | jq '.[] | select(.kind == "OpenAI") | .name' | tr -d '"')
+
+for accountName in $accountNames
+do
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 240
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-35-turbo",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+for accountName in $accountNames
+do
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 240
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-35-turbo",
+      "version": "0301"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+export deploymentName="gpt-35-turbo-16k"
+for accountName in $accountNames
+do
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 240
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-35-turbo-16k",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+export deploymentName="gpt-4"
+for accountName in $accountNames
+do
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 40
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+for accountName in $accountNames
+do
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 20
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+export deploymentName="gpt-4-32k"
+for accountName in $accountNames
+do
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 80
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4-32k",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+for accountName in $accountNames
+do
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 60
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4-32k",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
