@@ -223,7 +223,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 40
+      "capacity": 20
     },
     "properties": {
       "model": {
@@ -243,7 +243,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 20
+      "capacity": 40
     },
     "properties": {
       "model": {
@@ -264,7 +264,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 80
+      "capacity": 60
     },
     "properties": {
       "model": {
@@ -284,7 +284,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 60
+      "capacity": 80
     },
     "properties": {
       "model": {
