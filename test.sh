@@ -85,8 +85,6 @@ regions=(westeurope)
 
 #deploy GPT4
 export regions=(CanadaEast SwedenCentral SwitzerlandNorth)
-# Create resource group
-az group create --name "${resourceGroup}" --location "eastus"
 
 # Create Azure OpenAI resource in each region
 for region in "${regions[@]}"
@@ -94,15 +92,6 @@ do
 echo "Creating resource in ${region}..."
 
 openai_name="isde-${region}-${subnum}"
-
-az cognitiveservices account create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---kind "OpenAI" \
---sku "S0" \
---location "${region}" \
---custom-domain "${openai_name}" \
---yes
 
 # 4
 # Deploy gpt-4 model to each resource
