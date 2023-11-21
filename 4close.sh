@@ -21,6 +21,10 @@ do
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
+     "sku": {
+      "name": "Standard",
+      "capacity": 20
+    },
     "properties": {
       "model": {
       "format": "OpenAI",
@@ -37,6 +41,10 @@ do
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
+     "sku": {
+      "name": "Standard",
+      "capacity": 40
+    },
     "properties": {
       "model": {
       "format": "OpenAI",
@@ -54,6 +62,10 @@ do
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
+     "sku": {
+      "name": "Standard",
+      "capacity": 60
+    },
     "properties": {
       "model": {
       "format": "OpenAI",
@@ -70,6 +82,10 @@ do
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
+     "sku": {
+      "name": "Standard",
+      "capacity": 80
+    },
     "properties": {
       "model": {
       "format": "OpenAI",
