@@ -276,10 +276,6 @@ do
   }
   } '
 done
-subscriptionId="d00cb678-1e2e-45ac-8d56-981fa30af0b5"
-export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
-export resourceGroup="openai"
-subnum="11214"
 deploymentName="gpt-35-turbo"
 openai_name="isde-westeurope-${subnum}"
   curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${openai_name}/deployments/${deploymentName}?api-version=2023-05-01" \
