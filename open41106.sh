@@ -154,7 +154,15 @@ do
 
 echo "Creating resource in ${region}..."
 openai_name="isde-${region}-${subnum}"
-
+az cognitiveservices account create \
+        --name "${openai_name}" \
+        --resource-group "${resourceGroup}" \
+        --kind "OpenAI" \
+        --sku "S0" \
+        --location "${region}" \
+        --custom-domain "${openai_name}" \
+        --yes
+        
 # Deploy gpt-4-1106-preview model to each resource
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
@@ -168,7 +176,7 @@ az cognitiveservices account deployment create \
 
 done
 
-export regions=(UKSOUTH easeus2 westus FRANCECENTRAL CANADAEAST)
+export regions=(UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST)
 # Create Azure OpenAI resource in each region
 
 for region in "${regions[@]}"
@@ -176,6 +184,14 @@ do
 echo "Creating resource in ${region}..."
 openai_name="isde-${region}-${subnum}"
 
+az cognitiveservices account create \
+        --name "${openai_name}" \
+        --resource-group "${resourceGroup}" \
+        --kind "OpenAI" \
+        --sku "S0" \
+        --location "${region}" \
+        --custom-domain "${openai_name}" \
+        --yes
 # Deploy gpt-4-1106-preview model to each resource
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
