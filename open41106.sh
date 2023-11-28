@@ -198,6 +198,15 @@ do
         --yes
 # Deploy gpt-4-1106-preview model to each resource and close filter        
   accountNames="isde-${region}-${subnum}"
+  az cognitiveservices account deployment create \
+  --name "${openai_name}" \
+  --resource-group "${resourceGroup}" \
+  --deployment-name "${deploymentNameGpt4}" \
+  --model-name gpt-4 \
+  --model-version "1106-Preview" \
+  --model-format OpenAI \
+  --sku-capacity "80" \
+  --sku-name "Standard"
   curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
