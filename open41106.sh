@@ -145,7 +145,7 @@ az cognitiveservices account deployment create \
 --sku-name "Standard"
 
 # 4-1106
-# Deploy gpt-4-1106 model to each resource
+# Deploy gpt-4-1106 model to each resource : 150K
 export regions=(southIndia NORWAYEAST SWEDENCENTRAL)
 # Create Azure OpenAI resource in each region
 
@@ -176,15 +176,19 @@ az cognitiveservices account deployment create \
 
 done
 
-export regions=(UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST)
-# Create Azure OpenAI resource in each region
+
+# Deploy gpt-4-1106-preview model to each resource and close filter: 80K
+export deploymentName="gpt-4"
+export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
+export regions=(AustraliaEast UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST SwitzerlandNorth)
+
 
 for region in "${regions[@]}"
 do
-echo "Creating resource in ${region}..."
-openai_name="isde-${region}-${subnum}"
-
-az cognitiveservices account create \
+  echo "Creating resource in ${region}..."
+  openai_name="isde-${region}-${subnum}"
+# Create Azure OpenAI resource in each region
+  az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
         --kind "OpenAI" \
@@ -192,18 +196,28 @@ az cognitiveservices account create \
         --location "${region}" \
         --custom-domain "${openai_name}" \
         --yes
-# Deploy gpt-4-1106-preview model to each resource
-az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt4}" \
---model-name gpt-4 \
---model-version "1106-Preview" \
---model-format OpenAI \
---sku-capacity "80" \
---sku-name "Standard"
-
+# Deploy gpt-4-1106-preview model to each resource and close filter        
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 80
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": "true",
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "1106-preview"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
 done
+
 
 
 #close content filter
