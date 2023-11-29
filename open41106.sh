@@ -83,18 +83,6 @@ regions=(westeurope)
       --sku-name "Standard"
 
 #deploy GPT4-0613
-export regions=(SOUTHINDIA)
-az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt4}" \
---model-name gpt-35 \
---model-version "1106" \
---model-format OpenAI \
---sku-capacity "120" \
---sku-name "Standard"
-
-#deploy GPT4-0613
 export regions=(SWITZERLANDNORTH)
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
@@ -180,7 +168,7 @@ done
 # Deploy gpt-4-1106-preview model to each resource and close filter: 80K
 export deploymentName="gpt-4"
 export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
-export regions=(AustraliaEast UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST SwitzerlandNorth)
+export regions=(AustraliaEast UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST)
 
 
 for region in "${regions[@]}"
@@ -216,7 +204,7 @@ do
       "capacity": 80
     },
     "properties": {
-      "dynamicThrottlingEnabled": "true",
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4",
