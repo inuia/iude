@@ -152,25 +152,41 @@ az cognitiveservices account create \
         --yes
         
 # Deploy gpt-4-1106-preview model to each resource
-az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt4}" \
---model-name gpt-4 \
---model-version "1106-Preview" \
---model-format OpenAI \
---sku-capacity "150" \
---sku-name "Standard"
-
+# az cognitiveservices account deployment create \
+# --name "${openai_name}" \
+# --resource-group "${resourceGroup}" \
+# --deployment-name "${deploymentNameGpt4}" \
+# --model-name gpt-4 \
+# --model-version "1106-Preview" \
+# --model-format OpenAI \
+# --sku-capacity "150" \
+# --sku-name "Standard"
+# Deploy gpt-4-1106-preview model to each resource and close filter 150K      
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 150
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "1106-Preview"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
 done
-
 
 # Deploy gpt-4-1106-preview model to each resource and close filter: 80K
 export deploymentName="gpt-4"
 export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
 export regions=(AustraliaEast UKSOUTH eastus2 westus FRANCECENTRAL CANADAEAST)
-
-
 for region in "${regions[@]}"
 do
   echo "Creating resource in ${region}..."
@@ -184,18 +200,18 @@ do
         --location "${region}" \
         --custom-domain "${openai_name}" \
         --yes
-# Deploy gpt-4-1106-preview model to each resource and close filter        
+# Deploy gpt-4-1106-preview model to each resource and close filter 80       
   accountNames="isde-${region}-${subnum}"
 #  az cognitiveservices account deployment create \
-  --name "${openai_name}" \
-  --resource-group "${resourceGroup}" \
-  --deployment-name "${deploymentNameGpt4}" \
-  --model-name gpt-4 \
-  --model-version "1106-Preview" \
-  --model-format OpenAI \
-  --sku-capacity "80" \
-  --sku-name "Standard"
-  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-05-01" \
+#  --name "${openai_name}" \
+#  --resource-group "${resourceGroup}" \
+#  --deployment-name "${deploymentNameGpt4}" \
+#  --model-name gpt-4 \
+#  --model-version "1106-Preview" \
+#  --model-format OpenAI \
+#  --sku-capacity "80" \
+#  --sku-name "Standard"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
@@ -208,7 +224,7 @@ do
       "model": {
       "format": "OpenAI",
       "name": "gpt-4",
-      "version": "1106-preview"
+      "version": "1106-Preview"
       },
       "raiPolicyName":"Microsoft.Nil"
   }
