@@ -55,6 +55,27 @@ az cognitiveservices account deployment create \
 --sku-capacity "40" \
 --sku-name "Standard"
 
+Deploy close filter 40K   
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 40
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+  
 # Deploy gpt-4-32k model to each resource
 
 az cognitiveservices account deployment create \
@@ -66,6 +87,26 @@ az cognitiveservices account deployment create \
 --model-format OpenAI \
 --sku-capacity "80" \
 --sku-name "Standard"
+Deploy close filter 80K   
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 80
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4-32k",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
 
 done
 
@@ -92,6 +133,27 @@ az cognitiveservices account deployment create \
 --model-format OpenAI \
 --sku-capacity "60" \
 --sku-name "Standard"
+Deploy close filter 60K   
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 60
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4-32K",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+
 
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
@@ -102,6 +164,27 @@ az cognitiveservices account deployment create \
 --model-format OpenAI \
 --sku-capacity "20" \
 --sku-name "Standard"
+
+Deploy close filter 20K   
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 20
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "0613"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
 
 #1106
 # 4-1106
