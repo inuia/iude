@@ -18,7 +18,20 @@ export regions=(AustraliaEast CanadaEast EastUS EastUS2 FranceCentral JapanEast 
 # Create resource group
 export resourceGroup="openai" # Your resource group name
 az group create --name "${resourceGroup}" --location "eastus"
+for region in "${regions[@]}"
+do
+echo "Creating resource in ${region}..."
+openai_name="isde-${region}-${subnum}"
+az cognitiveservices account create \
+        --name "${openai_name}" \
+        --resource-group "${resourceGroup}" \
+        --kind "OpenAI" \
+        --sku "S0" \
+        --location "${region}" \
+        --custom-domain "${openai_name}" \
+        --yes
 
+done
 
 
 export deploymentName="gpt-35-turbo"
