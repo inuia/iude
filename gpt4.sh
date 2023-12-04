@@ -10,7 +10,7 @@ export subscriptionId=$1
 export subnum=$2
 
 echo "Subscription ID: ${subscriptionId}"
-
+export resourceGroup="openai" # Your resource group name
 az account set --subscription ${subscriptionId}
 
 # Create resource group
