@@ -164,6 +164,7 @@ do
       "capacity": 240
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-35-turbo",
@@ -185,6 +186,7 @@ do
       "capacity": 240
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-35-turbo-16k",
@@ -206,6 +208,7 @@ do
       "capacity": 20
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4",
@@ -226,6 +229,7 @@ do
       "capacity": 40
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4",
@@ -247,6 +251,7 @@ do
       "capacity": 60
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4-32k",
@@ -267,6 +272,7 @@ do
       "capacity": 80
     },
     "properties": {
+      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4-32k",
