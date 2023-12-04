@@ -34,10 +34,8 @@ export regions=(CanadaEast SwedenCentral SwitzerlandNorth AustraliaEast)
 for region in "${regions[@]}"
 do
 echo "Creating resource in ${region}..."
-
 openai_name="isde-${region}-${subnum}"
-
-    az cognitiveservices account create \
+az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
         --kind "OpenAI" \
