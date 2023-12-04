@@ -13,6 +13,10 @@ echo "Subscription ID: ${subscriptionId}"
 
 az account set --subscription ${subscriptionId}
 
+# Create resource group
+az group create --name "${resourceGroup}" --location "eastus"
+
+
 # change the following regions to alias as above
 
 # export regions=(australiaeast)
