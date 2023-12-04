@@ -84,7 +84,7 @@ regions=(westeurope)
 
 
 #deploy GPT4
-export regions=(CanadaEast SwedenCentral SwitzerlandNorth)
+export regions=(CanadaEast SwedenCentral SwitzerlandNorth AustraliaEast)
 
 # Create Azure OpenAI resource in each region
 for region in "${regions[@]}"
