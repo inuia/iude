@@ -301,6 +301,57 @@ openai_name="isde-westeurope-${subnum}"
       "raiPolicyName":"Microsoft.Nil"
   }
   } '
+# 4-1106
+# Deploy gpt-4-1106 model to each resource : 150K
+export regions=(southIndia NORWAYEAST)
+# Create Azure OpenAI resource in each region
+
+for region in "${regions[@]}"
+do
+
+echo "Creating resource in ${region}..."
+openai_name="isde-${region}-${subnum}"
+az cognitiveservices account create \
+        --name "${openai_name}" \
+        --resource-group "${resourceGroup}" \
+        --kind "OpenAI" \
+        --sku "S0" \
+        --location "${region}" \
+        --custom-domain "${openai_name}" \
+        --yes
+        
+# Deploy gpt-4-1106-preview model to each resource
+ az cognitiveservices account deployment create \
+ --name "${openai_name}" \
+ --resource-group "${resourceGroup}" \
+ --deployment-name "${deploymentNameGpt4}" \
+ --model-name gpt-4 \
+ --model-version "1106-Preview" \
+ --model-format OpenAI \
+ --sku-capacity "150" \
+ --sku-name "Standard"
+Deploy gpt-4-1106-preview model to each resource and close filter 150K      
+  accountNames="isde-${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 150
+    },
+    "properties": {
+      "dynamicThrottlingEnabled": true,
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-4",
+      "version": "1106-Preview"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
+done
+
 
 export subs=$1
 for sub in "${subs[@]}"
