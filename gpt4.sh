@@ -10,21 +10,22 @@ export subscriptionId=$1
 export subnum=$2
 
 echo "Subscription ID: ${subscriptionId}"
-export resourceGroup="openai" # Your resource group name
+
 az account set --subscription ${subscriptionId}
 
+# change the following regions to alias as above
+export regions=(AustraliaEast CanadaEast EastUS EastUS2 FranceCentral JapanEast NorthCentralUS SwedenCentral SwitzerlandNorth UKSouth westeurope)
 # Create resource group
+export resourceGroup="openai" # Your resource group name
 az group create --name "${resourceGroup}" --location "eastus"
 
 
-# change the following regions to alias as above
 
-# export regions=(australiaeast)
-# export regions=(CanadaEast SwedenCentral AustraliaEast)
-
-export resourceGroup="openai" # Your resource group name
+export deploymentName="gpt-35-turbo"
+export deploymentName16k="gpt-35-turbo-16k"
 export deploymentNameGpt4="gpt-4"
 export deploymentNameGpt432k="gpt-4-32k"
+
 
 #deploy GPT4
 export regions=(CanadaEast SwedenCentral SwitzerlandNorth AustraliaEast)
