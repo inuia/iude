@@ -71,9 +71,6 @@ done
 
 export regions=(FranceCentral)
 # Create Azure OpenAI resource in each region
-for region in "${regions[@]}"
-do
-
 echo "Creating resource in ${region}..."
 openai_name="isde-${region}-${subnum}"
 az cognitiveservices account create \
@@ -85,7 +82,6 @@ az cognitiveservices account create \
         --custom-domain "${openai_name}" \
         --yes
 
-done
 
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
