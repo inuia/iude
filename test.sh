@@ -54,7 +54,7 @@ do
       --model-name gpt-35-turbo \
       --model-version "0613"  \
       --model-format OpenAI \
-      --sku-capacity "240" \
+      --sku-capacity "30" \
       --sku-name "Standard"
 # 35 - 16k
 # Deploy GPT-35-Turbo-16k model to each resource
@@ -65,7 +65,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-35-turbo-16k \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "240" \
+--sku-capacity "30" \
 --sku-name "Standard"
 
 done
@@ -79,7 +79,7 @@ regions=(westeurope)
       --model-name gpt-35-turbo \
       --model-version "0301"  \
       --model-format OpenAI \
-      --sku-capacity "240" \
+      --sku-capacity "30" \
       --sku-name "Standard"
 
 
@@ -102,7 +102,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-4 \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "40" \
+--sku-capacity "8" \
 --sku-name "Standard"
 
 # Deploy gpt-4-32k model to each resource
@@ -114,7 +114,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-4-32k \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "80" \
+--sku-capacity "8" \
 --sku-name "Standard"
 
 done
@@ -135,7 +135,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-4-32k \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "60" \
+--sku-capacity "8" \
 --sku-name "Standard"
 
 az cognitiveservices account deployment create \
@@ -145,7 +145,7 @@ az cognitiveservices account deployment create \
 --model-name gpt-4 \
 --model-version "0613" \
 --model-format OpenAI \
---sku-capacity "20" \
+--sku-capacity "8" \
 --sku-name "Standard"
 
 #close content filter
@@ -161,7 +161,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 240
+      "capacity": 30
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -183,7 +183,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 240
+      "capacity": 30
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -205,7 +205,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 20
+      "capacity": 8
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -226,7 +226,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 40
+      "capacity": 8
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -248,7 +248,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 60
+      "capacity": 8
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -269,7 +269,7 @@ do
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 80
+      "capacity": 8
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
@@ -290,7 +290,7 @@ openai_name="isde-westeurope-${subnum}"
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 240
+      "capacity": 30
     },
     "properties": {
       "model": {
@@ -328,7 +328,7 @@ az cognitiveservices account create \
  --model-name gpt-4 \
  --model-version "1106-Preview" \
  --model-format OpenAI \
- --sku-capacity "150" \
+ --sku-capacity "8" \
  --sku-name "Standard"
 Deploy gpt-4-1106-preview model to each resource and close filter 150K      
   accountNames="isde-${region}-${subnum}"
@@ -338,7 +338,7 @@ Deploy gpt-4-1106-preview model to each resource and close filter 150K
   -d '{
     "sku": {
       "name": "Standard",
-      "capacity": 150
+      "capacity": 8
     },
     "properties": {
       "dynamicThrottlingEnabled": true,
