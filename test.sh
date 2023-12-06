@@ -34,7 +34,7 @@ for region in "${regions[@]}"
 do
     echo "Creating resource in ${region}..."
     
-    openai_name="isde-${region}-${subnum}"
+    openai_name="${region}-${subnum}"
 
     az cognitiveservices account create \
         --name "${openai_name}" \
@@ -91,7 +91,7 @@ for region in "${regions[@]}"
 do
 echo "Creating resource in ${region}..."
 
-openai_name="isde-${region}-${subnum}"
+openai_name="${region}-${subnum}"
 
 # 4
 # Deploy gpt-4 model to each resource
@@ -125,7 +125,7 @@ for region in "${regions[@]}"
 do
 echo "Creating resource in ${region}..."
 
-openai_name="isde-${region}-${subnum}"
+openai_name="${region}-${subnum}"
 done
 
 az cognitiveservices account deployment create \
@@ -283,7 +283,7 @@ do
   } '
 done
 deploymentName="gpt-35-turbo"
-openai_name="isde-westeurope-${subnum}"
+openai_name="westeurope-${subnum}"
   curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${openai_name}/deployments/${deploymentName}?api-version=2023-05-01" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
@@ -310,7 +310,7 @@ for region in "${regions[@]}"
 do
 
 echo "Creating resource in ${region}..."
-openai_name="isde-${region}-${subnum}"
+openai_name="${region}-${subnum}"
 az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
@@ -331,7 +331,7 @@ az cognitiveservices account create \
  --sku-capacity "150" \
  --sku-name "Standard"
 Deploy gpt-4-1106-preview model to each resource and close filter 150K      
-  accountNames="isde-${region}-${subnum}"
+  accountNames="${region}-${subnum}"
   curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
