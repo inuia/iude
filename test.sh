@@ -82,7 +82,6 @@ regions=(westeurope)
       --sku-capacity "240" \
       --sku-name "Standard"
 
-
 #deploy GPT4
 export regions=(CanadaEast SwedenCentral SwitzerlandNorth AustraliaEast)
 
@@ -301,8 +300,8 @@ openai_name="westeurope-${subnum}"
       "raiPolicyName":"Microsoft.Nil"
   }
   } '
-# 4-1106
-# Deploy gpt-4-1106 model to each resource : 150K
+# 4-
+# Deploy gpt-4- model to each resource : 150K
 export regions=(southIndia NORWAYEAST)
 # Create Azure OpenAI resource in each region
 
@@ -352,6 +351,37 @@ Deploy gpt-4-1106-preview model to each resource and close filter 150K
   } '
 done
 
+
+# Deploy GPT-35-Turbo-1106 model to SouthIndia
+regions=(SouthIndia)
+    az cognitiveservices account deployment create \
+      --name "${openai_name}" \
+      --resource-group "${resourceGroup}" \
+      --deployment-name "${deploymentName}" \
+      --model-name gpt-35-turbo \
+      --model-version "1106"  \
+      --model-format OpenAI \
+      --sku-capacity "120" \
+      --sku-name "Standard"
+# close filter
+export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${openai_name}/providers/Microsoft.CognitiveServices/accounts/${deploymentName}/deployments/gpt-35-turbo?api-version=2023-10-01-preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $accessToken" \
+  -d '{
+    "sku": {
+      "name": "Standard",
+      "capacity": 120
+    },
+    "properties": {
+      "model": {
+      "format": "OpenAI",
+      "name": "gpt-35-turbo",
+      "version": "1106"
+      },
+      "raiPolicyName":"Microsoft.Nil"
+  }
+  } '
 
 export subs=$1
 for sub in "${subs[@]}"
