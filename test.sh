@@ -354,6 +354,8 @@ done
 
 # Deploy GPT-35-Turbo-1106 model to SouthIndia
 regions=(SouthIndia)
+echo "Creating resource in ${region}..."
+openai_name="${region}-${subnum}"
     az cognitiveservices account deployment create \
       --name "${openai_name}" \
       --resource-group "${resourceGroup}" \
