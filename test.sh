@@ -130,7 +130,7 @@ done
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt432k}" \
+--deployment-name "${Gpt432k}" \
 --model-name gpt-4-32k \
 --model-version "0613" \
 --model-format OpenAI \
@@ -140,7 +140,7 @@ az cognitiveservices account deployment create \
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt4}" \
+--deployment-name "${Gpt4}" \
 --model-name gpt-4 \
 --model-version "0613" \
 --model-format OpenAI \
@@ -353,7 +353,8 @@ done
 
 
 # Deploy GPT-35-Turbo-1106 model to SouthIndia
-regions=(SouthIndia)
+regions=(southIndia)
+deploymentName="gpt-35-turbo"
 echo "Creating resource in ${region}..."
 openai_name="${region}-${subnum}"
     az cognitiveservices account deployment create \
