@@ -353,7 +353,7 @@ done
 
 
 # Deploy GPT-35-Turbo-1106 model to SouthIndia
-regions=(southIndia)
+region=(southIndia)
 deploymentName="gpt-35-turbo"
 echo "Creating resource in ${region}..."
 openai_name="${region}-${subnum}"
