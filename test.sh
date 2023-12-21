@@ -104,17 +104,6 @@ az cognitiveservices account deployment create \
 --sku-capacity "40" \
 --sku-name "Standard"
 
-# Deploy gpt-4-32k model to each resource
-az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name "gpt-4v" \
---model-name gpt-4 \
---model-version "vision-preview" \
---model-format OpenAI \
---sku-capacity "10" \
---sku-name "Standard"
-
 # Deploy gpt-4 model to each resource
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
@@ -126,6 +115,23 @@ az cognitiveservices account deployment create \
 --sku-capacity "80" \
 --sku-name "Standard"
 
+done
+
+# Deploy gpt-4v model to each resource
+export regions=(AustraliaEast SwitzerlandNorth)
+for region in "${regions[@]}"
+do
+echo "Creating resource in ${region}..."
+openai_name="${region}-${subnum}"
+az cognitiveservices account deployment create \
+--name "${openai_name}" \
+--resource-group "${resourceGroup}" \
+--deployment-name gpt-4v \
+--model-name gpt-4 \
+--model-version "vision-preview" \
+--model-format OpenAI \
+--sku-capacity "10" \
+--sku-name "Standard"
 done
 
 export regions=(FranceCentral)
