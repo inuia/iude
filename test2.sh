@@ -65,12 +65,14 @@ curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resour
       "capacity": 40
     },
     "properties": {
-      "dynamicThrottlingEnabled": true,
       "model": {
       "format": "OpenAI",
       "name": "gpt-4",
       "version": "1106-Preview"
       },
+     "rateLimits": {
+      "dynamicThrottlingEnabled": true,
+      }, 
       "raiPolicyName":"Microsoft.Nil"
   }
   } '
