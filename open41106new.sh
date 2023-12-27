@@ -105,7 +105,7 @@ curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resour
   done
 
 # deploy 4-1106-15w
-export regions=(snorthcentralus swedencentral southindia)
+export regions=(northcentralus swedencentral southindia)
 # Create Azure OpenAI resource in each region
 for region in "${regions[@]}"
 do
