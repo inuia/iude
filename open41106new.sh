@@ -20,6 +20,7 @@ export deploymentName="gpt-35-turbo"
 export deploymentName16k="gpt-35-turbo-16k"
 export deploymentNameGpt4="gpt-4"
 export deploymentNameGpt432k="gpt-4-32k"
+export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
 
 # Create resource group
 az group create --name "${resourceGroup}" --location "eastus"
