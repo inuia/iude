@@ -26,7 +26,7 @@ export accessToken=$(az account get-access-token --resource https://management.c
 az group create --name "${resourceGroup}" --location "eastus"
 
 # deploy 4-1106-4w
-export regions=(switzerlandnorth)
+export regions=(CanadaEast)
 # Create Azure OpenAI resource in each region
 for region in "${regions[@]}"
 do
