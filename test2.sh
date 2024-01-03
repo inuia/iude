@@ -48,7 +48,7 @@ do
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
---deployment-name "${deploymentNameGpt4}" \
+--deployment-name "test" \
 --model-name gpt-4 \
 --model-version "1106-Preview" \
 --model-format OpenAI \
