@@ -32,7 +32,7 @@ for region in "${regions[@]}"
 do
     echo "Creating resource in ${region}..."
     
-    openai_name="isde-${region}-${subnum}"
+    openai_name="${region}-${subnum}"
 
     az cognitiveservices account create \
         --name "${openai_name}" \
@@ -77,36 +77,6 @@ curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resour
   }
   } '
   done
-
-# deploy dall-e-3
-export regions=(SwedenCentral)
-for region in "${regions[@]}"
-do
-    echo "Creating resource in ${region}..."
-    
-    openai_name="isde-${region}-${subnum}"
-
-    az cognitiveservices account create \
-        --name "${openai_name}" \
-        --resource-group "${resourceGroup}" \
-        --kind "OpenAI" \
-        --sku "S0" \
-        --location "${region}" \
-        --custom-domain "${openai_name}" \
-        --yes
-
-# Deploy gpt-4-32k model to each resource
-
-az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name dall-e-3 \
---model-name dall-e-3 \
---model-version "3.0" \
---model-format OpenAI \
---sku-capacity "2" \
---sku-name "Standard"
-done
 
 
 
