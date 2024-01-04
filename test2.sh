@@ -56,7 +56,7 @@ az cognitiveservices account deployment create \
  --sku-name "Standard"
 
 
-curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${openai_name}?api-version=2023-10-01-preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
