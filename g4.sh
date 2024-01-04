@@ -84,14 +84,15 @@ az cognitiveservices account deployment create \
 --sku-name "Standard"
 
 az cognitiveservices account deployment create \
---name "${openai_name}" \
---resource-group "${resourceGroup}" \
---deployment-name "${Gpt4}" \
---model-name gpt-4 \
---model-version "0613" \
---model-format OpenAI \
---sku-capacity "20" \
---sku-name "Standard"
+ --name "${openai_name}" \
+ --resource-group "${resourceGroup}" \
+ --deployment-name "$deploymentNameGpt4" \
+ --model-name gpt-4 \
+ --model-version "1106-Preview" \
+ --model-format OpenAI \
+ --sku-capacity "80" \
+ --sku-name "Standard"
+ 
 done
 
 
