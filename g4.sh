@@ -37,7 +37,8 @@ echo "Creating gpt-4 resource in ${region}..."
 
 openai_name="${region}-${subnum}"
 
-az cognitiveservices account create \
+
+    az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
         --kind "OpenAI" \
@@ -79,7 +80,8 @@ do
 echo "Creating gpt-4 resource in ${region}..."
 
 openai_name="${region}-${subnum}"
-az cognitiveservices account create \
+
+    az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
         --kind "OpenAI" \
@@ -117,7 +119,8 @@ for region in "${regions[@]}"
 do
 echo "Creating gpt-4v resource in ${region}..."
 openai_name="${region}-${subnum}"
-az cognitiveservices account create \
+
+    az cognitiveservices account create \
         --name "${openai_name}" \
         --resource-group "${resourceGroup}" \
         --kind "OpenAI" \
@@ -125,6 +128,7 @@ az cognitiveservices account create \
         --location "${region}" \
         --custom-domain "${openai_name}" \
         --yes
+        
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
