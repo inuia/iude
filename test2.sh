@@ -45,15 +45,15 @@ do
 
 # Deploy gpt-4-1106 model to each resource
 
-# az cognitiveservices account deployment create \
-# --name "${openai_name}" \
-# --resource-group "${resourceGroup}" \
-# --deployment-name "$deploymentNameGpt4" \
-# --model-name gpt-4 \
-# --model-version "1106-Preview" \
-# --model-format OpenAI \
-# --sku-capacity "40" \
-# --sku-name "Standard"
+az cognitiveservices account deployment create \
+ --name "${openai_name}" \
+ --resource-group "${resourceGroup}" \
+ --deployment-name "$deploymentNameGpt4" \
+ --model-name gpt-4 \
+ --model-version "1106-Preview" \
+ --model-format OpenAI \
+ --sku-capacity "40" \
+ --sku-name "Standard"
 
 
 curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
