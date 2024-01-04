@@ -93,7 +93,7 @@ openai_name="${region}-${subnum}"
 az cognitiveservices account deployment create \
 --name "${openai_name}" \
 --resource-group "${resourceGroup}" \
---deployment-name "${Gpt432k}" \
+--deployment-name "${deploymentNameGpt432k}" \
 --model-name gpt-4-32k \
 --model-version "0613" \
 --model-format OpenAI \
@@ -103,7 +103,7 @@ az cognitiveservices account deployment create \
 az cognitiveservices account deployment create \
  --name "${openai_name}" \
  --resource-group "${resourceGroup}" \
- --deployment-name "$deploymentNameGpt4" \
+ --deployment-name "${deploymentNameGpt4}" \
  --model-name gpt-4 \
  --model-version "1106-Preview" \
  --model-format OpenAI \
