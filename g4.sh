@@ -112,6 +112,37 @@ az cognitiveservices account deployment create \
  
 done
 
+# 4-
+# Deploy gpt-4- model to each resource : 150K
+export regions=(southIndia NORWAYEAST)
+# Create Azure OpenAI resource in each region
+
+for region in "${regions[@]}"
+do
+
+echo "Creating resource in ${region}..."
+openai_name="${region}-${subnum}"
+az cognitiveservices account create \
+        --name "${openai_name}" \
+        --resource-group "${resourceGroup}" \
+        --kind "OpenAI" \
+        --sku "S0" \
+        --location "${region}" \
+        --custom-domain "${openai_name}" \
+        --yes
+        
+# Deploy gpt-4-1106-preview model to each resource
+ az cognitiveservices account deployment create \
+ --name "${openai_name}" \
+ --resource-group "${resourceGroup}" \
+ --deployment-name "${deploymentNameGpt4}" \
+ --model-name gpt-4 \
+ --model-version "1106-Preview" \
+ --model-format OpenAI \
+ --sku-capacity "150" \
+ --sku-name "Standard"
+
+done
 
 # Deploy gpt-4v model to each resource
 export regions=(WestUs SwitzerlandNorth)
