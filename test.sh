@@ -346,8 +346,8 @@ az cognitiveservices account create \
  --sku-capacity "150" \
  --sku-name "Standard"
 Deploy gpt-4-1106-preview model to each resource and close filter 150K      
-  accountNames="${region}-${subnum}"
-  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentName}?api-version=2023-10-01-preview" \
+  accountName="${region}-${subnum}"
+  curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentNameGpt4}?api-version=2023-10-01-preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
