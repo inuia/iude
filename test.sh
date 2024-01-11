@@ -316,7 +316,7 @@ openai_name="westeurope-${subnum}"
       "raiPolicyName":"Microsoft.Nil"
   }
   } '
-# 4-
+
 # Deploy gpt-4- model to each resource : 150K
 export regions=(southIndia NORWAYEAST)
 # Create Azure OpenAI resource in each region
@@ -345,7 +345,7 @@ az cognitiveservices account create \
  --model-format OpenAI \
  --sku-capacity "150" \
  --sku-name "Standard"
-Deploy gpt-4-1106-preview model to each resource and close filter 150K      
+# close filter gpt-4-1106-preview model at 150K to each resource      
   accountName="${region}-${subnum}"
   curl -X PUT "https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/${deploymentNameGpt4}?api-version=2023-10-01-preview" \
   -H "Content-Type: application/json" \
