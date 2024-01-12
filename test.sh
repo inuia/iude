@@ -383,8 +383,9 @@ openai_name="${region}-${subnum}"
       --sku-capacity "120" \
       --sku-name "Standard"
 # close filter
+accountName="${region}-${subnum}"
 export accessToken=$(az account get-access-token --resource https://management.core.windows.net -o json | jq -r .accessToken)
-  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${openai_name}/providers/Microsoft.CognitiveServices/accounts/${deploymentName}/deployments/gpt-35-turbo?api-version=2023-10-01-preview \
+  curl -X PUT https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroup}/providers/Microsoft.CognitiveServices/accounts/${accountName}/deployments/gpt-35-turbo?api-version=2023-10-01-preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $accessToken" \
   -d '{
